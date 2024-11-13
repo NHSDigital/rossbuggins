@@ -1,22 +1,12 @@
----
-layout: page
-title:  Bash and Make
-parent: Developer Guides
-is_not_draft: false
-last_modified_date: 2024-05-28
-owner: Ross Buggins
-author: Ross Buggins
----
-
-## Developer Guide: Bash and Make
+# Developer Guide: Bash and Make
 
 - [Developer Guide: Bash and Make](#developer-guide-bash-and-make)
-- [Using Make](#using-make)
-- [Using Bash](#using-bash)
-- [Make and Bash working together](#make-and-bash-working-together)
-- [Conventions](#conventions)
-  - [Debugging](#debugging)
-  - [Scripts](#scripts)
+  - [Using Make](#using-make)
+  - [Using Bash](#using-bash)
+  - [Make and Bash working together](#make-and-bash-working-together)
+  - [Conventions](#conventions)
+    - [Debugging](#debugging)
+    - [Scripts](#scripts)
 
 ## Using Make
 

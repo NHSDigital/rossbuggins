@@ -1,21 +1,9 @@
----
-layout: page
-title:  Run Git hooks on commit
-parent: User Guides
-description:  Run Git hooks on commit
-summary:  Run Git hooks on commit
-is_not_draft: false
-last_modified_date: 2024-05-28
-owner: Ross Buggins
-author: Ross Buggins
----
-
-## Guide: Run Git hooks on commit
+# Guide: Run Git hooks on commit
 
 - [Guide: Run Git hooks on commit](#guide-run-git-hooks-on-commit)
-- [Overview](#overview)
-- [Key files](#key-files)
-- [Testing](#testing)
+  - [Overview](#overview)
+  - [Key files](#key-files)
+  - [Testing](#testing)
 
 ## Overview
 

@@ -1,16 +1,4 @@
----
-layout: page
-title:  Sign Git commits
-parent: User Guides
-description: Sign Git commits
-summary:  Sign Git commits
-is_not_draft: false
-last_modified_date: 2024-05-28
-owner: Ross Buggins
-author: Ross Buggins
----
-
-## Guide: Sign Git commits
+# Guide: Sign Git commits
 
 - [Guide: Sign Git commits](#guide-sign-git-commits)
   - [Overview](#overview)

@@ -1,23 +1,11 @@
----
-layout: page
-title:  Test GitHub Actions locally
-parent: User Guides
-description: Test GitHub Actions locally
-summary:  Test GitHub Actions locally
-is_not_draft: false
-last_modified_date: 2024-05-28
-owner: Ross Buggins
-author: Ross Buggins
----
-
-## Guide: Test GitHub Actions locally
+# Guide: Test GitHub Actions locally
 
 - [Guide: Test GitHub Actions locally](#guide-test-github-actions-locally)
-- [Overview](#overview)
-- [Key files](#key-files)
-- [Prerequisites](#prerequisites)
-- [Testing](#testing)
-- [FAQ](#faq)
+  - [Overview](#overview)
+  - [Key files](#key-files)
+  - [Prerequisites](#prerequisites)
+  - [Testing](#testing)
+  - [FAQ](#faq)
 
 ## Overview
 

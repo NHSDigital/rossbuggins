@@ -1,23 +1,11 @@
----
-layout: page
-title:  Perform static analysis
-parent: User Guides
-description:  Perform static analysis
-summary:  Perform static analysis
-is_not_draft: false
-last_modified_date: 2024-05-28
-owner: Ross Buggins
-author: Ross Buggins
----
-
-## Guide: Perform static analysis
+# Guide: Perform static analysis
 
 - [Guide: Perform static analysis](#guide-perform-static-analysis)
-- [Overview](#overview)
-- [Key files](#key-files)
-- [Setup](#setup)
-- [Testing](#testing)
-- [Configuration checklist](#configuration-checklist)
+  - [Overview](#overview)
+  - [Key files](#key-files)
+  - [Setup](#setup)
+  - [Testing](#testing)
+  - [Configuration checklist](#configuration-checklist)
 
 ## Overview
 
