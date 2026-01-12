@@ -1,8 +1,16 @@
 
 {
-  "name": "Jekyll",
-  "image": "mcr.microsoft.com/devcontainers/jekyll:2-bullseye",
-
+  "name": "Node",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "likec4.likec4-vscode"
+      ]
+    }
+  },
+  "postStartCommand": "make config",
+  
   "features": {
      "ghcr.io/devcontainers/features/common-utils:2": {
       "installZsh": true,
@@ -13,8 +21,11 @@
       "username": "automatic",
       "userUid": "automatic",
       "userGid": "automatic"
-    }
-  }
+    },
+     "ghcr.io/devcontainers-extra/features/apt-packages:1": {
+      "packages": "curl,wget, git, graphviz"
+     }
+ }
 }
 
 
