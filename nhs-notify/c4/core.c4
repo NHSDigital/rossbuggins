@@ -1,0 +1,295 @@
+specification {
+  element domain
+  element microservice
+  element external_system
+  element aws_account
+
+  element actor {
+    style {
+      shape person
+    }
+  }
+
+  tag aws_account_001
+  tag aws_account_002
+  tag aws_account_003
+  tag aws_account_004
+
+  tag team_mycylium
+  tag team_godzilla
+  tag team_dt3
+  tag team_dt4
+
+  tag deployable // Mark deployable services, ie those that can be deployed independently
+
+  deploymentNode environment
+  deploymentNode zone
+  deploymentNode aws_account
+}
+
+deployment {
+  environment prod {
+    zone eu1 {
+      aws_account aws_account_001 {
+        instanceOf aws_account_001
+      }
+    }
+  }
+}
+
+model {
+
+  aws_account_001 = aws_account 'NHS Digital Notify Account' {
+    #aws_account_001, #team_mycylium
+    description 'AWS Account for NHS Digital Notify Services'
+    metadata {
+      repository 'github.com/nhsdigital/notify'
+    }
+  }
+
+  aws_account_002 = aws_account 'NHS England Services Account' {
+    description 'AWS Account for NHS England external services'
+  }
+
+  mesh_customer = actor 'MESH Customer' {
+    it -> mesh
+  }
+
+  api_customer = actor 'API Customer' {
+    it -> apim
+    it -> apim_proxy
+  }
+
+  secondary_care_trust = actor 'Secondary Care Trust' {
+    it -> digital_letters_mesh
+  }
+
+  external_services = external_system 'NHS England Services' {
+    apim = external_system 'APIM' {
+      description 'API Management for external service integrations'
+    }
+
+    mesh = external_system 'Service Mesh' {
+      description 'Service mesh for secure communication between services'
+    }
+  }
+
+  print_supplier = actor 'Print Supplier'
+
+  core = domain 'Notify Core' {
+    #deployable
+    description 'The core functionality of the notification system'
+
+    apim_proxy = microservice 'APIM Proxy' {
+      description 'Proxy service for handling requests from APIM'
+      apim -> apim_proxy
+      apim_proxy -> api_customer
+    }
+
+    core_mesh = microservice 'Notify Core Mesh' {
+      description 'Service mesh for the Notify Core domain'
+    }
+
+    core_routing = microservice 'Notify Core Routing' {
+      description 'Routing service for the Notify Core domain'
+      mesh_customer -> core_mesh
+      core_mesh -> core_routing
+    }
+
+    core_callbacks = microservice 'Notify Core Callbacks' {
+      description 'Callback handling service for the Notify Core domain'
+
+    }
+  }
+
+  suppliers_api = domain 'Suppliers API' {
+    description 'APIs provided by notification suppliers (e.g., email, SMS, letters)'
+    it -> print_supplier
+    it -> event_bus
+
+    core_letters_subscriber = microservice 'Notify Core Letters Subscriber' {
+      description 'Subscriber service for handling digital letters in Notify Core'
+      core_routing -> core_letters_subscriber
+    }
+  }
+
+  nudging = domain 'Nudging Service' {
+    description 'Service responsible for sending nudging notifications to users'
+
+    core_nudging_subscriber = microservice 'Notify Core Nudging' {
+      description 'Nudging service within Notify Core'
+      core_routing -> core_nudging_subscriber
+    }
+    it -> event_bus
+  }
+
+  digital_letters = domain 'Digital Letters Service' {
+    description 'Service for sending digital letters to users'
+    it -> event_bus
+
+
+
+    digital_letters_mesh = microservice 'Digital Letters Mesh' {
+      #deployable
+      description 'Service mesh for the Digital Letters domain'
+    }
+  }
+
+  reporting = domain 'Reporting Service' {
+    description 'Service for generating and managing reports'
+
+    power_bi = microservice 'Power BI Integration' {
+      description 'Integration with Power BI for reporting'
+    }
+  }
+
+  web_portal = domain 'Web Portal' {
+    description 'Web portal for users to manage their notifications'
+  }
+
+  supporting_services = domain 'Supporting Services' {
+    description 'Various supporting services required for the notification system'
+
+    event_bus = microservice 'Event Bus' {
+      description 'Event bus for inter-service communication'
+    }
+  }
+}
+
+views {
+
+  view index {
+    title 'Overview'
+
+    group 'Customers' {
+      include api_customer
+      include mesh_customer
+      include secondary_care_trust
+    }
+
+    group 'Generic Services' {
+      include external_services
+      include supporting_services
+    }
+
+
+    group 'Suppliers' {
+      include print_supplier
+    }
+
+
+    group 'NHS Notify Platform' {
+      include *
+    }
+  }
+
+  view deployable {
+    title 'Deployable Services'
+    include element.tag = #deployable
+  }
+
+  view domains {
+    title 'Domains'
+
+    include suppliers_api
+    include nudging
+    include digital_letters
+    include reporting
+    include web_portal
+    include supporting_services
+  }
+  view bounded_contexts {
+    title 'Bounded Contexts'
+
+    group 'Core Bounded Context' {
+      include core.*
+    }
+  }
+
+  view of api_customer {
+    title 'Customers / API Customer'
+    include *
+  }
+  view of mesh_customer {
+    title 'Customers / Mesh Customer'
+    include *
+  }
+
+  view of core {
+    title 'Domains / Core'
+    include *
+  }
+
+  view of nudging {
+    title 'Domains / Nudging'
+    include *
+  }
+
+  view of suppliers_api {
+    title 'Domains / Suppliers API'
+    include *
+  }
+
+  view of digital_letters {
+    title 'Domains / Digital Letters'
+    include *
+  }
+
+  view of supporting_services {
+    title 'Domains / Supporting Services'
+    include *
+  }
+  view of external_services {
+    title 'Domains / NHS England Services'
+    include *
+  }
+
+  view team_mycylium {
+    title 'Teams / Mycylium Team'
+    include element.tag = #team_mycylium
+  }
+
+  view team_godzilla {
+    title 'Teams / Godzilla Team'
+    include digital_letters
+    include reporting.power_bi
+  }
+
+  view team_dt3 {
+    title 'Teams / DT3 Team'
+    include web_portal
+  }
+
+  view team_dt4 {
+    title 'Teams / DT4 Team'
+    include supporting_services.event_bus
+  }
+
+  view aws_account_001 {
+    title 'AWS Accounts / NHS Digital Notify Account'
+    include element.tag = #aws_account_001
+  }
+
+
+  dynamic view example {
+    title 'Flows / Dynamic Example'
+    api_customer -> core.core_routing 'Sends notification request'
+    core.core_routing -> supporting_services.event_bus 'Publishes notification event'
+    supporting_services.event_bus -> suppliers_api 'Delivers notification to supplier API'
+  }
+
+  dynamic view digital_letters_flow {
+    title 'Flows / Digital Letters Flow'
+    secondary_care_trust -> digital_letters.digital_letters_mesh 'Requests digital letter notification'
+  }
+
+
+  deployment view prod_deployment {
+    title 'Deployments / Production Deployment'
+    link https://likec4.dev
+
+    include prod.*
+    include prod.**
+    // ...
+  }
+}

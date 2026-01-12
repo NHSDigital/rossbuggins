@@ -1,8 +1,0 @@
-# NHS Notify Code Owners
-
-# Notify default owners
-* @rossbugginsnhs
-
-# Codeowners must be final check
-/.github/CODEOWNERS @rossbugginsnhs
-/CODEOWNERS @rossbugginsnhs

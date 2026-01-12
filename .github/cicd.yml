@@ -1,0 +1,22 @@
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: ⚙️ build
+        uses: likec4/actions@v1
+        with:
+          action: build
+          path: src/likec4
+          output: dist
+          base: /baseurl/
+
+      - name: upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: likec4
+          path: dist
