@@ -1,5 +1,9 @@
 name: build
-on: push
+on: 
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   build:
@@ -22,6 +26,11 @@ jobs:
           name: likec4
           path: dist
 
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3          
+        with:
+          path: dist
+
   deploy:
       # Add a dependency to the build job
       needs: build
@@ -42,4 +51,3 @@ jobs:
         - name: Deploy to GitHub Pages
           id: deployment
           uses: actions/deploy-pages@v4 # or specific "vX.X.X" version tag for this action
-          artifact_name: likec4
