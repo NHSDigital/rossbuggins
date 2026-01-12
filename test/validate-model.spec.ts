@@ -1,5 +1,25 @@
-import { test } from 'vitest'
-import { likec4model } from './likec4-model'
+import { likec4test } from './likec4test'
+
+likec4test('Should have titles', ({ expect, likec4 }) => {
+  expect.hasAssertions()
+  for (const r of likec4.elements()) {
+    expect.soft(
+      r.title,
+      `Element ${r.id} has no title`
+    ).toBeDefined()
+  }
+})
+
+// likec4test('Relationships should have metadata', ({ expect, likec4 }) => {
+//   expect.hasAssertions()
+//   for (const r of likec4.relationships()) {
+//     expect.soft(
+//       r.getMetadata('key'), // here we get type checking
+//       `Relationship ${r.source.id} -> ${r.target.id} has no metadata`
+//     ).toBeDefined()
+//   }
+// })
+
 
 // test('Every service has a link to the repository', ({ expect }) => {
 //   expect.hasAssertions()
