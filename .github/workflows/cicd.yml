@@ -12,7 +12,7 @@ jobs:
         uses: likec4/actions@v1
         with:
           action: build
-          path: src/likec4
+          path: nhs-notify/c4
           output: dist
           base: /baseurl/
 
