@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { actions, startSession, getEventsForSubject, getKitchenStateForOrder, PizzaChoice, SessionState } from "../engine";
+import { FireworksOverlay } from "./Fireworks";
 
 const PIZZAS: PizzaChoice[] = [
   { name: "margherita", price: 9.99 },
@@ -15,6 +16,7 @@ export const App: React.FC = () => {
   const [now, setNow] = useState(() => Date.now());
   const [freezeAt, setFreezeAt] = useState<number | null>(null);
   const bannerRef = useRef<HTMLElement | null>(null);
+  const [showFireworks, setShowFireworks] = useState(false);
 
   useEffect(() => {
     if (!session) return;
@@ -40,6 +42,17 @@ export const App: React.FC = () => {
     // Freeze at the moment we first see a terminal state
     setFreezeAt((prev) => (prev ?? now));
   }, [session, terminalStatus, now]);
+
+  useEffect(() => {
+    if (terminalStatus === "ready") {
+      setShowFireworks(true);
+      const id = setTimeout(() => setShowFireworks(false), 10000);
+      return () => clearTimeout(id);
+    }
+    if (!terminalStatus) {
+      setShowFireworks(false);
+    }
+  }, [terminalStatus]);
 
   const effectiveNow = freezeAt ?? now;
 
@@ -76,6 +89,7 @@ export const App: React.FC = () => {
 
   return (
     <div className="app-root">
+      {showFireworks && <FireworksOverlay />}
       <h1>Event Workshop Web Demo</h1>
 
       {session && terminalStatus && (

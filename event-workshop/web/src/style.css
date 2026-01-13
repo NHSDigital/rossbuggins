@@ -98,6 +98,39 @@ button[disabled] {
   background: #ef4444;
 }
 
+.fireworks-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 40;
+}
+
+.firework-particle {
+  position: absolute;
+  border-radius: 999px;
+  opacity: 0;
+  transform: translate3d(0, 0, 0) scale(0.5);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+  animation-name: firework-pop;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes firework-pop {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.4);
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, -140px, 0) scale(1.2);
+  }
+}
+
 .status-banner {
   border-radius: 999px;
   padding: 0.85rem 1.4rem;
