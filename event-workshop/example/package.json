@@ -1,0 +1,19 @@
+{
+  "name": "event-workshop-example",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/run.ts",
+    "interactive": "ts-node src/run-interactive.ts"
+  },
+  "dependencies": {
+    "cloudevents": "^8.0.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.0"
+  }
+}
