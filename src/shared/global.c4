@@ -1,0 +1,9 @@
+global {
+  predicateGroup active_domains {
+    include nhs_notify_domain 
+    include nhs_notify_domain.* 
+    include nhs_notify_domain.**
+    exclude * where tag is #deprecated
+    exclude * where kind is not domain
+  }
+}

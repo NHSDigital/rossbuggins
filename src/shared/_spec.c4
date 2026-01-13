@@ -1,5 +1,7 @@
 specification {
 
+  tag deprecated
+  
   color dynamo-purple rgba(42, 0, 209, 1)
 
   element bounded_context

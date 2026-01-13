@@ -1,0 +1,27 @@
+model {
+
+    dev_teams = team_dev 'Development Teams' {
+
+        description 'Teams responsible for development and maintenance of services'
+
+        team_mycylium = team 'Mycylium Team' {
+
+            description 'Team responsible for Mycylium domain and services'
+        }
+
+        team_godzilla = team 'Godzilla Team' {
+
+            description 'Team responsible for Godzilla domain and services'
+        }
+
+        team_dt3 = team 'DT3 Team' {
+
+            description 'Team responsible for DT3 domain and services'
+        }
+
+        team_skynet = team 'Skynet Team' {
+
+            description 'Team responsible for Skynet domain and services'
+        }
+    }
+}

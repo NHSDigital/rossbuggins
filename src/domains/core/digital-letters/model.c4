@@ -3,6 +3,7 @@ model {
   extend nhs_notify_domain.nhs_notify_core_domains {
 
     digital_letters = domain 'Digital Letters Service' {
+      #team_mycylium
       description 'Service for sending digital letters to users'
 
   

@@ -4,6 +4,7 @@ model {
 extend nhs_notify_domain.nhs_notify_core_domains {
     
   two_way = domain 'Two Way Messaging Service' {
+    #team_skynet
     description 'Service responsible for sending two-way messages to users'
 
    

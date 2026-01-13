@@ -1,10 +1,17 @@
 specification {
 
-
   tag team_mycylium
   tag team_godzilla
   tag team_dt3
   tag team_skynet
 
- 
+  element team_dev{
+
+  }
+  
+  element team {
+    style {
+      icon: tech:ms-dos
+    }
+  }
 }
