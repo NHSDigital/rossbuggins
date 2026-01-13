@@ -1,8 +1,8 @@
 {
-  "name": "likec4-template",
+  "name": "likec4-nhs-notify",
   "version": "0.0.1",
   "private": true,
-  "description": "LikeC4 template",
+  "description": "LikeC4 nhs notify",
   "type": "module",
   "packageManager": "pnpm@10.7.1",
   "scripts": {

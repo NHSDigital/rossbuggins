@@ -1,0 +1,91 @@
+
+views {
+
+
+  view index {
+    title 'Overview'
+
+      group 'Customers' {
+      include api_customer
+      include mesh_customer
+      include secondary_care_trust
+    }
+
+      include nhs_notify_domain.nhs_notify_core_domains
+      include nhs_notify_domain.nhs_notify_core_domains.*
+      include nhs_notify_domain.nhs_notify_supporting_domains
+      include nhs_notify_domain.nhs_notify_supporting_domains.*
+
+        group 'Suppliers' {
+      include print_supplier
+    }
+  }
+
+  view all {
+    title 'All'
+
+    group 'Customers' {
+      include api_customer
+      include mesh_customer
+      include secondary_care_trust
+    }
+
+      include nhs_notify_domain
+      include nhs_notify_domain.nhs_notify_core_domains
+      include nhs_notify_domain.nhs_notify_core_domains.*
+      include nhs_notify_domain.nhs_notify_generic_domains
+      include nhs_notify_domain.nhs_notify_generic_domains.*
+      include nhs_notify_domain.nhs_notify_supporting_domains
+      include nhs_notify_domain.nhs_notify_supporting_domains.*
+
+  
+
+    group 'Suppliers' {
+      include print_supplier
+    }
+
+  }
+
+  view deployable {
+    title 'Deployable Services'
+    include element.tag = #deployable
+  }
+
+  view bounded_contexts {
+    title 'Bounded Contexts'
+
+    group 'Core Bounded Context' {
+      include nhs_notify_domain.nhs_notify_core_domains.core.*
+    }
+  }
+
+  view of api_customer {
+    title 'Customers / API Customer'
+    include *
+  }
+  view of mesh_customer {
+    title 'Customers / Mesh Customer'
+    include *
+  }
+
+
+
+  view aws_account_001 {
+    title 'AWS Accounts / NHS Digital Notify Account'
+    include element.tag = #aws_account_001
+  }
+
+
+  dynamic view example {
+    title 'Flows / Dynamic Example'
+    api_customer -> nhs_notify_domain.nhs_notify_core_domains.core.core_routing 'Sends notification request'
+    nhs_notify_domain.nhs_notify_core_domains.core.core_routing -> nhs_notify_domain.nhs_notify_generic_domains.event_bus 'Publishes notification event'
+    nhs_notify_domain.nhs_notify_generic_domains.event_bus ->  nhs_notify_domain.nhs_notify_core_domains.suppliers_api 'Delivers notification to supplier API'
+  }
+
+  dynamic view digital_letters_flow {
+    title 'Flows / Digital Letters Flow'
+    secondary_care_trust -> nhs_notify_domain.nhs_notify_core_domains.digital_letters.digital_letters_mesh_checker 'Requests digital letter notification'
+  }
+
+}

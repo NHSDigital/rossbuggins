@@ -1,0 +1,17 @@
+
+model {
+
+extend nhs_notify_domain.nhs_notify_core_domains {
+    
+  suppliers_api = domain 'Suppliers API' {
+    description 'APIs provided by notification suppliers (e.g., email, SMS, letters)'
+    it -> print_supplier
+    it -> nhs_notify_domain.nhs_notify_generic_domains.event_bus
+
+    core_letters_subscriber = microservice 'Notify Core Letters Subscriber' {
+      description 'Subscriber service for handling digital letters in Notify Core'
+      core.core_routing -> core_letters_subscriber
+    }
+  }
+}
+}

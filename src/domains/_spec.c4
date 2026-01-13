@@ -1,0 +1,13 @@
+specification {
+  element domain
+
+  
+  element event {
+    style {
+      shape document
+      color amber
+    }
+  }
+  relationship event
+  
+}

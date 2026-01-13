@@ -1,0 +1,16 @@
+views {
+    deployment view prod_deployment {
+        title 'Deployments / Production Deployment'
+        link https://likec4.dev
+
+        include prod
+        include prod.*
+        include prod.**
+        include prod.eu1
+        include prod.eu1.*
+        include prod.eu1.**
+
+        include prod.eu1.aws_account_digital_letters.digital_letters_mesh_deployment_boundary.*
+        // ...
+    }
+}

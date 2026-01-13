@@ -1,0 +1,32 @@
+
+
+model {
+  extend nhs_notify_domain.nhs_notify_core_domains {
+    
+  
+  core = domain 'Notify Core' {
+    #deployable
+    description 'The core functionality of the notification system'
+
+    apim_proxy = microservice 'APIM Proxy' {
+      description 'Proxy service for handling requests from APIM'
+      external_services.apim -> apim_proxy
+      apim_proxy -> api_customer
+    }
+
+    core_mesh = microservice 'Notify Core Mesh' {
+      description 'Service mesh for the Notify Core domain'
+    }
+
+    core_routing = microservice 'Notify Core Routing' {
+      description 'Routing service for the Notify Core domain'
+      mesh_customer -> core_mesh
+      core_mesh -> core_routing
+    }
+
+    core_callbacks = microservice 'Notify Core Callbacks' {
+      description 'Callback handling service for the Notify Core domain'
+    }
+  }
+}
+}

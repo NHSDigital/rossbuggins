@@ -1,0 +1,13 @@
+
+model {
+
+  extend nhs_notify_domain.nhs_notify_supporting_domains {
+    reporting = domain 'Reporting Service' {
+      description 'Service for generating and managing reports'
+
+      power_bi = microservice 'Power BI Integration' {
+        description 'Integration with Power BI for reporting'
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+views "Domains / Core Domains" {
+    view of nhs_notify_domain.nhs_notify_core_domains {
+        title 'All Core Domains'
+        include *
+        include -> *
+        include * ->
+    }
+
+
+
+}

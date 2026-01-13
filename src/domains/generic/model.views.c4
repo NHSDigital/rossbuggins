@@ -1,0 +1,9 @@
+views "Domains / Generic Domains" {
+    view of nhs_notify_domain.nhs_notify_generic_domains {
+        title 'All Generic Domains'
+        include *
+        include -> *
+        include * ->
+    }
+
+}

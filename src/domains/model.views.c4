@@ -1,0 +1,11 @@
+views "Domains" {
+
+    view of nhs_notify_domain {
+        title 'All Domains'
+
+        include nhs_notify_domain
+        include *
+        include -> *
+        include * ->
+    }
+}

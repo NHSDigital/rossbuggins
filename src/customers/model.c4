@@ -1,0 +1,17 @@
+
+model {
+
+  mesh_customer = customer 'MESH Customer' {
+    this ->  external_services.mesh
+  }
+
+  api_customer = customer 'API Customer' {
+    it -> external_services.apim
+    it -> nhs_notify_domain.nhs_notify_core_domains.core.apim_proxy
+  }
+
+  secondary_care_trust = customer 'Secondary Care Trust' {
+    it -> external_services.mesh.mesh_mail_box_digital_letters
+  }
+
+}

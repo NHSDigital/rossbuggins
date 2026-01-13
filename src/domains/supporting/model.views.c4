@@ -1,0 +1,11 @@
+views "Domains / Supporting Domains" {
+    view of nhs_notify_domain.nhs_notify_supporting_domains {
+        title 'All Supporting Domains'
+        include *
+        include -> *
+        include * ->
+    }
+
+
+
+}

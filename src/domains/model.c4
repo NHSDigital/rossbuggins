@@ -1,0 +1,19 @@
+
+model {
+
+  nhs_notify_domain = domain 'NHS Notify Domain' {
+    description 'Service for generating and managing reports'
+
+    nhs_notify_core_domains = domain 'NHS Notify Core Domains' {
+      description 'Core domains for NHS Notify services'
+    }
+
+     nhs_notify_supporting_domains = domain 'NHS Notify Supporting Domains' {
+      description 'Supporting domains for NHS Notify services'
+    }
+
+      nhs_notify_generic_domains = domain 'NHS Notify Generic Domains' {
+      description 'Generic domains for NHS Notify services'
+    }
+  }
+}

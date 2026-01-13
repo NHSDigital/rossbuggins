@@ -1,0 +1,47 @@
+model {
+
+  extend nhs_notify_domain.nhs_notify_core_domains {
+
+    digital_letters = domain 'Digital Letters Service' {
+      description 'Service for sending digital letters to users'
+
+  
+        digital_letters_mesh_bounded_context = bounded_context 'Mesh Bounded Context' {
+          description 'Bounded context for the Digital Letters service mesh'
+
+
+          digital_letters_mesh_checker = microservice 'Mesh Checker Microservice' {
+            #deployable
+            description 'Service mesh for the Digital Letters domain'
+            it .event new_letter_event 'Raises'
+            it ->  external_services.mesh.mesh_mail_box_digital_letters 'Checks MESH for new letters'
+          }
+
+          digital_letters_mesh_downloader = microservice 'Mesh Downloader Microservice' {
+            #deployable
+            description 'Service mesh for the Digital Letters domain'
+
+            lambda1 = lambda 'Digital Letters Mesh Downloader Function' {
+              description 'Function to download letters from MESH'
+            } 
+            
+          
+            new_letter_event .event it  'Subscribes To'
+            it .event new_letter_downloaded_event 'Raises'
+            it ->  external_services.mesh.mesh_mail_box_digital_letters 'Downloads letters from MESH'
+          }
+
+          shared_state = dynamodb 'Shared State Table' {
+            description 'DynamoDB table for shared state across the Digital Letters mesh'
+
+            digital_letters_mesh_checker .database_storage this 'Used By'
+            digital_letters_mesh_downloader .database_storage this 'Used By'
+          }
+        }
+      
+
+
+    }
+
+  }
+}

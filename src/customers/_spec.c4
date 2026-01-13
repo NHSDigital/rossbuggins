@@ -1,0 +1,7 @@
+specification {
+  element customer {
+    style {
+      shape person
+    }
+  }
+}

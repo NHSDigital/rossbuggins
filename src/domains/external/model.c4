@@ -1,0 +1,25 @@
+model {
+
+  external_services = external_system 'NHS England Services' {
+    apim = external_system 'APIM' {
+      description 'API Management for external service integrations'
+    }
+
+    mesh = external_system 'Service Mesh' {
+      description 'Service mesh for secure communication between services'
+
+      mesh_mail_box_digital_letters = external_system 'MESH Mailbox for Digital Letters' {
+        description 'Mailbox for receiving digital letters via MESH'
+      }
+    }
+
+    pdm = external_system 'Patient Data Management' {
+      description 'Service for managing patient data'
+    }
+
+    cis2 = external_system 'Care Information Service 2 (CIS2)' {
+      description 'Service for accessing care information'
+    }
+  }
+
+}

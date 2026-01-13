@@ -1,0 +1,40 @@
+specification {
+
+  color dynamo-purple rgba(42, 0, 209, 1)
+
+  element bounded_context
+  element microservice
+  element external_system
+
+  element lambda {
+    style {
+      shape cylinder
+      icon aws:lambda //https://likec4.dev/dsl/styling/#bundled-icons
+    }
+  }
+  element dynamodb {
+    style {
+      shape storage
+      color dynamo-purple
+      icon: aws:dynamo-db //https://likec4.dev/dsl/styling/#bundled-icons
+    }
+  }
+  element s3 {
+    style {
+      shape storage
+      icon aws:simple-storage-service //https://likec4.dev/dsl/styling/#bundled-icons
+    }
+  }
+
+  element actor {
+    style {
+      shape person
+    }
+  }
+
+  relationship database_storage
+
+
+
+
+}

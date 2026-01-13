@@ -1,0 +1,26 @@
+specification {
+    deploymentNode environment
+    deploymentNode zone
+    deploymentNode aws_account
+    deploymentNode deploymentBoundary {
+      style {
+        color red
+      }
+    }
+
+    deploymentNode lambda {
+      style {
+        icon aws:lambda //https://likec4.dev/dsl/styling/#bundled-icons
+      }
+    }
+
+    deploymentNode s3 {
+      style {
+        icon aws:simple-storage-service //https://likec4.dev/dsl/styling/#bundled-icons
+      }
+    }
+
+
+  tag deployable // Mark deployable services, ie those that can be deployed independently
+
+}

@@ -1,0 +1,23 @@
+views {
+
+  view team_mycylium {
+    title 'Teams / Mycylium Team'
+    include element.tag = #team_mycylium
+  }
+
+  view team_godzilla {
+    title 'Teams / Godzilla Team'
+    include element.tag = #team_godzilla
+  }
+
+  view team_dt3 {
+    title 'Teams / DT3 Team'
+    include element.tag = #team_dt3
+  }
+
+  view team_skynet {
+    title 'Teams / Skynet Team'
+    include element.tag = #team_skynet
+  }
+
+}

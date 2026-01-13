@@ -1,0 +1,13 @@
+specification {
+  tag aws_account_001
+  tag aws_account_002
+  tag aws_account_003
+  tag aws_account_004
+
+  element aws_account {
+    style {
+      shape storage
+      color amber  
+    }
+  }
+}

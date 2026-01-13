@@ -1,0 +1,9 @@
+ views "Domains / Core Domains" {
+
+    view of nhs_notify_domain.nhs_notify_core_domains.two_way {
+        title 'Two Way Messaging'
+        include *
+        include -> *
+        include * -> 
+    }
+}

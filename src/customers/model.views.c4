@@ -1,0 +1,15 @@
+
+views "Customers" {
+
+
+
+  view customers {
+    title 'All Customers'
+    include element.kind = customer
+    include element.kind = customer -> *
+    include * -> element.kind = customer
+    
+  }
+ 
+
+}

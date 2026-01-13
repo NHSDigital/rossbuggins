@@ -1,0 +1,16 @@
+
+model {
+
+  aws_account_001 = aws_account 'NHS Digital Notify Account' {
+    #aws_account_001, #team_mycylium
+    description 'AWS Account for NHS Digital Notify Services'
+    metadata {
+      repository 'github.com/nhsdigital/notify'
+    }
+  }
+
+  aws_account_002 = aws_account 'NHS England Services Account' {
+    description 'AWS Account for NHS England external services'
+  }
+
+}

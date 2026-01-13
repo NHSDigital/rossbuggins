@@ -1,0 +1,10 @@
+
+model {
+  extend nhs_notify_domain.nhs_notify_supporting_domains {
+    web_portal = domain 'Web Portal' {
+      description 'Web portal for users to manage their notifications'
+
+      this -> nhs_notify_domain.nhs_notify_generic_domains.authentication 'Uses authentication service'
+    }
+  }
+}

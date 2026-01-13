@@ -1,0 +1,35 @@
+deployment {
+  prod = environment "Production" {
+    description "Production Environment"
+    eu1 = zone "eu1" {
+
+      aws_account_digital_letters = aws_account "AWS Account - Digital Letters" {
+
+        digital_letters_mesh_deployment_boundary = deploymentBoundary "Mesh" {
+          description "Digital Letters Mesh Deployment Boundary"
+
+          lambda1 = lambda "Digital Letters Mesh Checker Service" {
+            description "Digital Letters Mesh Checker Service"
+
+            instanceOf nhs_notify_domain.nhs_notify_core_domains.digital_letters.digital_letters_mesh_bounded_context.digital_letters_mesh_checker
+          }
+
+          lambda2 = lambda "Digital Letters Mesh Checker Service" {
+            description "Digital Letters Mesh Checker Service"
+
+            instanceOf nhs_notify_domain.nhs_notify_core_domains.digital_letters.digital_letters_mesh_bounded_context.digital_letters_mesh_downloader
+          }
+
+          storage = s3 "Digital Letters Mesh Shared State Storage" {
+            description "S3 Bucket for Digital Letters Mesh Shared State"
+            instanceOf nhs_notify_domain.nhs_notify_core_domains.digital_letters.digital_letters_mesh_bounded_context.shared_state
+          }
+
+
+
+        }
+      }
+    }
+  }
+}
+

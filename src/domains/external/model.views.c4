@@ -1,0 +1,11 @@
+views "Domains / External Domains" {
+    view of external_services {
+        title 'All External Domains'
+        include *
+        include -> *
+        include * ->
+    }
+
+
+
+}

@@ -1,0 +1,3 @@
+model {
+  print_supplier = supplier 'Print Supplier'
+}

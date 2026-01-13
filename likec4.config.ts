@@ -1,8 +1,8 @@
 import { defineConfig } from 'likec4/config'
 
 export default defineConfig({
-  name: 'likec4-template',
-  title: 'LikeC4 Template',
+  name: 'likec4-nhs-notify',
+  title: 'LikeC4 NHS Notify',
   exclude: [
     'node_modules/**'
   ],

@@ -1,0 +1,18 @@
+model {
+
+    extend nhs_notify_domain.nhs_notify_core_domains.digital_letters {
+
+    
+    new_letter_event = event 'New Letter Event' {
+        description 'Event triggered when a new digital letter is created'
+
+        it .event nhs_notify_domain.nhs_notify_generic_domains.event_bus 'Published To'
+    }
+
+    new_letter_downloaded_event = event 'New Letter Downloaded Event' {
+        description 'Event triggered when a digital letter is downloaded'
+
+        it .event nhs_notify_domain.nhs_notify_generic_domains.event_bus 'Published To'
+    }
+}
+}

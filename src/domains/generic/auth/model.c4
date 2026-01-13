@@ -1,0 +1,11 @@
+
+model {
+
+  extend nhs_notify_domain.nhs_notify_generic_domains {
+    authentication = microservice 'Authentication' {
+      description 'Event bus for inter-service communication'
+
+      this -> external_services.cis2 'Validates user credentials against CIS2'
+    }
+  }
+}

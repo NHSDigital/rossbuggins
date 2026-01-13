@@ -1,0 +1,36 @@
+ views "Domains / Core Domains  / Digital Letters" {
+
+    view of nhs_notify_domain.nhs_notify_core_domains.digital_letters {
+        title 'Digital Letters Sub Domain'
+        include *
+        include -> *
+        include * -> 
+        include element.kind = customer -> external_services.mesh.*
+    }
+ }
+
+  views "Domains / Core Domains / Digital Letters / Bounded Contexts / Mesh" {
+      view of nhs_notify_domain.nhs_notify_core_domains.digital_letters.digital_letters_mesh_bounded_context {
+        title 'Bounded Context'
+        include *
+        include -> *
+        include * -> 
+    }
+}
+
+  views "Domains / Core Domains / Digital Letters / Bounded Contexts / Mesh" {
+      view of nhs_notify_domain.nhs_notify_core_domains.digital_letters.digital_letters_mesh_bounded_context.digital_letters_mesh_checker {
+        title 'Mesh Checker'
+            include *
+        include -> *
+        include * -> 
+    }
+
+view of nhs_notify_domain.nhs_notify_core_domains.digital_letters.digital_letters_mesh_bounded_context.digital_letters_mesh_downloader {
+        title 'Mesh Downloader'
+            include *
+        include -> *
+        include * -> 
+    }
+    
+}
