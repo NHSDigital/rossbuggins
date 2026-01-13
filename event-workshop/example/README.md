@@ -16,12 +16,22 @@ cd example
 npm install
 ```
 
-## Run
+## Run (simple demo)
 
 ```bash
 npm start
 ```
 
-This will run a small in-memory simulation of the pizza workflow, logging events and state transitions to the console.
+This runs a single happy-path in-memory simulation of the pizza workflow and logs CloudEvents and kitchen state transitions to the console.
 
-Use the code as a reference when discussing patterns in the workshop.
+## Run (interactive workshop demo)
+
+To drive the workflow step-by-step from the terminal:
+
+```bash
+npm run interactive
+```
+
+You will be prompted for your name (used as the `customerId`), asked to choose a pizza, and then presented with a menu to trigger payment, inventory, and chef success/failure events. A timer will automatically emit an `order.timeout` event if you wait too long.
+
+Use this interactive run during the workshop to explore choreography, timeouts, rollback, and how `subject` and `traceparent` correlate events.
