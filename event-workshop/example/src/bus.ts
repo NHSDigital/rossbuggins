@@ -1,5 +1,4 @@
 import { v4 as uuid } from "uuid";
-import { randomBytes } from "crypto";
 import { CloudEvent } from "cloudevents";
 import { AnyDomainEvent, logEvent } from "./events";
 
@@ -71,8 +70,8 @@ export function createEvent<T>(
 }
 
 function generateTraceparent(): string {
-  const traceId = randomBytes(16).toString("hex"); // 32 hex chars
-  const spanId = randomBytes(8).toString("hex"); // 16 hex chars
+  const traceId = randomHex(16); // 32 hex chars
+  const spanId = randomHex(8); // 16 hex chars
   return `00-${traceId}-${spanId}-01`;
 }
 
@@ -83,6 +82,28 @@ function deriveChildTraceparent(parentTraceparent: string): string {
   }
 
   const [version, traceId, _parentSpanId, flags] = parts;
-  const spanId = randomBytes(8).toString("hex");
+  const spanId = randomHex(8);
   return `${version}-${traceId}-${spanId}-${flags}`;
+}
+
+function randomHex(byteLength: number): string {
+  // Prefer Web Crypto API when available (browsers, some runtimes)
+  const globalAny: any = globalThis as any;
+  const cryptoObj = globalAny.crypto || globalAny.msCrypto;
+
+  if (cryptoObj && typeof cryptoObj.getRandomValues === "function") {
+    const bytes = new Uint8Array(byteLength);
+    cryptoObj.getRandomValues(bytes);
+    return Array.from(bytes)
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
+  }
+
+  // Fallback for Node or other environments without Web Crypto
+  let out = "";
+  for (let i = 0; i < byteLength; i++) {
+    const n = Math.floor(Math.random() * 256);
+    out += n.toString(16).padStart(2, "0");
+  }
+  return out;
 }

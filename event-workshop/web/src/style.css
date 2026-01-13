@@ -1,0 +1,122 @@
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+.app-root {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+h1 {
+  margin-bottom: 1.5rem;
+}
+
+.card {
+  background: #020617;
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  border: 1px solid #1e293b;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+input,
+select {
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.375rem;
+  border: 1px solid #1f2937;
+  background: #020617;
+  color: #e5e7eb;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 999px;
+  border: none;
+  padding: 0.5rem 1rem;
+  background: #22c55e;
+  color: #022c22;
+  font-weight: 600;
+}
+
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.5rem;
+}
+
+.code-block {
+  background: #020617;
+  border-radius: 0.5rem;
+  border: 1px solid #1e293b;
+  padding: 0.75rem;
+  max-height: 320px;
+  overflow: auto;
+  font-size: 0.8rem;
+}
+
+.clock-bar {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: #020617;
+  border: 1px solid #1e293b;
+  overflow: hidden;
+  margin-top: 0.25rem;
+}
+
+.clock-bar-inner {
+  height: 100%;
+  transition: width 0.2s linear;
+}
+
+.clock-ok {
+  background: #22c55e;
+}
+
+.clock-warn {
+  background: #f97316;
+}
+
+.clock-danger {
+  background: #ef4444;
+}
+
+.status-banner {
+  border-radius: 999px;
+  padding: 0.85rem 1.4rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.status-ready {
+  background: radial-gradient(circle at top left, #22c55e, #16a34a);
+  color: #022c22;
+}
+
+.status-failed {
+  background: radial-gradient(circle at top left, #f97316, #b91c1c);
+  color: #020617;
+}
+
+.status-timeout {
+  background: radial-gradient(circle at top left, #38bdf8, #1d4ed8);
+  color: #020617;
+}
